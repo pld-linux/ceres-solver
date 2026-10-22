@@ -71,6 +71,9 @@ cd build
 export LDFLAGS="%{rpmldflags} -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
 %endif
 %cmake ../ \
+%ifarch %{ix86} x32
+	-DBUILD_TESTING:BOOL=OFF \
+%endif
 	-DBUILD_DOCUMENTATION:BOOL=ON
 
 %{__make}
