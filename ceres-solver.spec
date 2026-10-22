@@ -18,7 +18,11 @@ BuildRequires:	SuiteSparse-AMD-devel
 BuildRequires:	SuiteSparse-CAMD-devel
 BuildRequires:	SuiteSparse-CCOLAMD-devel
 BuildRequires:	SuiteSparse-COLAMD-devel
+BuildRequires:	SuiteSparse-Config
+BuildRequires:	SuiteSparse-SPQR-devel
+BuildRequires:	eigen3
 BuildRequires:	glog-devel
+BuildRequires:	gflags-devel
 BuildRequires:	abseil-cpp-devel
 BuildRequires:	lapack-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,7 +67,9 @@ Dokumentacja API biblioteki %{name}.
 %build
 mkdir -p build
 cd build
-
+%ifarch %{ix86} x32
+export LDFLAGS="%{rpmldflags} -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
+%endif
 %cmake ../ \
 	-DBUILD_DOCUMENTATION:BOOL=ON
 
