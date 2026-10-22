@@ -68,6 +68,7 @@ Dokumentacja API biblioteki %{name}.
 mkdir -p build
 cd build
 %ifarch %{ix86} x32
+export CXXFLAGS="%{rpmcxxflags} -g0"
 export LDFLAGS="%{rpmldflags} -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
 %endif
 %cmake ../ \
