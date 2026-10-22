@@ -18,7 +18,7 @@ BuildRequires:	SuiteSparse-AMD-devel
 BuildRequires:	SuiteSparse-CAMD-devel
 BuildRequires:	SuiteSparse-CCOLAMD-devel
 BuildRequires:	SuiteSparse-COLAMD-devel
-BuildRequires:	SuiteSparse-Config
+BuildRequires:	SuiteSparse-config-devel
 BuildRequires:	SuiteSparse-SPQR-devel
 BuildRequires:	eigen3
 BuildRequires:	glog-devel
