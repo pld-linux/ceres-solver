@@ -25,6 +25,7 @@ BuildRequires:	glog-devel
 BuildRequires:	gflags-devel
 BuildRequires:	abseil-cpp-devel
 BuildRequires:	lapack-devel
+ExcludeArch:	%{ix86} x32
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,7 +53,6 @@ Pliki nagłówkowe biblioteki %{name}.
 Summary:	API documentation for %{name} library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki %{name}
 Group:		Documentation
-# if not arch-dependent
 BuildArch:	noarch
 
 %description apidocs
@@ -67,14 +67,7 @@ Dokumentacja API biblioteki %{name}.
 %build
 mkdir -p build
 cd build
-%ifarch %{ix86} x32
-export CXXFLAGS="%{rpmcxxflags} -g0"
-export LDFLAGS="%{rpmldflags} -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
-%endif
 %cmake ../ \
-%ifarch %{ix86} x32
-	-DBUILD_TESTING:BOOL=OFF \
-%endif
 	-DBUILD_DOCUMENTATION:BOOL=ON
 
 %{__make}
